@@ -1,0 +1,37 @@
+---
+title: "DATA 607 Assignment 2B Approach"
+author: "Zineb Tamnat"
+date: "2026-02-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction  
+
+My understanding of his assignment is that it will evaluate how well a binary classification model predicts penguin sex using predicted probabilities. I will analyze how changing the probability threshold affects confusion matrices and performance metrics such as accuracy, precision, recall, and F1 score.
+
+## Planned Approach  
+
+### 1) Explore the data  
+
+First, I will load `penguin_predictions.csv` into R and inspect the structure of the data. I will:  
+- count how many observations are male vs female
+- create a bar plot of the actual class (`sex`) to visualize class balance.  
+
+This will help me understand whether the dataset is balanced or not.
+
+### 2) Calculate the null error rate  
+
+I will identify the majority class so the most common sex in the dataset and calculate the null error rate, which is the error rate if we always predicted that class.  
+
+I will explain why this baseline is important.
+
+### 3) Recompute predicted classes at different thresholds  
+
+Instead of relying on `.pred_class`, I will create new predicted labels using:  
+
+```r
+ifelse(.pred_female > threshold, 1, 0)
